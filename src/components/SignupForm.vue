@@ -13,7 +13,7 @@
         <div class="skills">
           <label for="">Skills:</label>
           <input type="text" v-model="tempSkill" @keyup.alt="addSkill">
-          <div v-for="skill in skills" :key="skill" class="pill">
+          <div v-for="skill in skills" :key="skill" class="pill" @click="deleteSkill(skill)">
             {{ skill }}
           </div>
         </div>
@@ -47,6 +47,11 @@
           this.skills.push(this.tempSkill)
         }
         this.tempSkill = ''
+      },
+      deleteSkill (skill) {
+        this.skills = this.skills.filter(item => {
+          return skill !== item
+        })
       }
     }
   }
@@ -86,5 +91,17 @@
     margin: 0 10px 0 0;
     position: relative;
     top: 2px;
+  }
+  .pill {
+    display: inline-block;
+    margin: 20px 10px 0 0;
+    padding: 6px 12px;
+    background: #eee;
+    border-radius: 20px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: #777;
+    cursor: pointer;
   }
 </style>
